@@ -241,6 +241,7 @@ type User {
   name: String!
   username: UUID!
   metadata: Map
+  """The groups of the user"""
   groups: [Group!]
   friends: [User!]
   friendships: [Friendship!]
