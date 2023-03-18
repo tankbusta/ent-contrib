@@ -243,7 +243,6 @@ type User {
   metadata: Map
   """The groups of the user"""
   groups: [Group!]
-  friends: [User!]
   friendships: [Friendship!]
 }
 `, printSchema(schema))
@@ -572,6 +571,12 @@ input FriendshipWhereInput {
   createdAtGTE: Time
   createdAtLT: Time
   createdAtLTE: Time
+  """user edge predicates"""
+  hasUser: Boolean
+  hasUserWith: [UserWhereInput!]
+  """friend edge predicates"""
+  hasFriend: Boolean
+  hasFriendWith: [UserWhereInput!]
 }
 type Group implements Node @hasPermissions(permissions: ["ADMIN","MODERATOR"]) {
   id: ID!
@@ -954,22 +959,6 @@ type User implements Node {
     """Filtering options for Groups returned from the connection."""
     where: GroupWhereInput
   ): GroupConnection!
-  friends(
-    """Returns the elements in the list that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the first _n_ elements from the list."""
-    first: Int
-
-    """Returns the elements in the list that come before the specified cursor."""
-    before: Cursor
-
-    """Returns the last _n_ elements from the list."""
-    last: Int
-
-    """Filtering options for Users returned from the connection."""
-    where: UserWhereInput
-  ): UserConnection!
   friendships(
     """Returns the elements in the list that come after the specified cursor."""
     after: Cursor
@@ -1046,9 +1035,6 @@ input UserWhereInput {
   """groups edge predicates"""
   hasGroups: Boolean
   hasGroupsWith: [GroupWhereInput!]
-  """friends edge predicates"""
-  hasFriends: Boolean
-  hasFriendsWith: [UserWhereInput!]
   """friendships edge predicates"""
   hasFriendships: Boolean
   hasFriendshipsWith: [FriendshipWhereInput!]
