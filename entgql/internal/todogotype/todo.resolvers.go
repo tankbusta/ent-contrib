@@ -24,6 +24,10 @@ import (
 	"entgo.io/contrib/entgql/internal/todogotype/ent"
 )
 
+func (r *categoryResolver) TodosCount(ctx context.Context, obj *ent.Category) (*int, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
 func (r *mutationResolver) CreateCategory(ctx context.Context, input ent.CreateCategoryInput) (*ent.Category, error) {
 	panic(fmt.Errorf("not implemented"))
 }
@@ -37,6 +41,10 @@ func (r *mutationResolver) UpdateTodo(ctx context.Context, id string, input ent.
 }
 
 func (r *mutationResolver) ClearTodos(ctx context.Context) (int, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *mutationResolver) UpdateFriendship(ctx context.Context, id string, input UpdateFriendshipInput) (*ent.Friendship, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
