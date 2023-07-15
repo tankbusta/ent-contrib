@@ -8,6 +8,14 @@ input CategoryConfigInput {
   maxMembers: Int
 }
 
+type CategoryTypes {
+  public: Boolean
+}
+
+input CategoryTypesInput {
+  public: Boolean
+}
+
 scalar Duration
 scalar UUID
 
@@ -47,4 +55,8 @@ type Custom {
 
 extend input CreateCategoryInput {
   createTodos: [CreateTodoInput!]
+}
+
+interface NamedNode {
+  name: String!
 }
